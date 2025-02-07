@@ -14,22 +14,16 @@ async function updateOrInsertEmpresa(jsonData) {
 
 	// Verificar se o registro existe
 	if (registro) {
-		//console.log('CNPJ localizado na base de dados: ', jsonData.empresa_cnpj);
-
 		registro.cnpj = jsonData.empresa_cnpj;
 		registro.nome = jsonData.empresa_nome;
 
-		// Salvar as alterações no banco de dados
 		await registro.save();
-		//console.log('Empresa atualizada com sucesso.');
 	} else {
-		//console.log('CNPJ não localizado na base de dados, será incluído');
 		if (jsonData.empresa_cnpj != null && jsonData.empresa_nome)  {
 			await Empresa.create({			
 				cnpj: jsonData.empresa_cnpj,
 				nome: jsonData.empresa_nome,
 			});
-			//console.log('Empresa cadastrada com sucesso.');
 		}		
 	}
 }
@@ -47,15 +41,12 @@ async function updateOrInsertCCusto(jsonData) {
 
 		// Salvar as alterações no banco de dados
 		await registro.save();
-		//console.log('Centro de Custo atualizado com sucesso.');
 	} else {
-		//console.log('Centro de Custo não localizado na base de dados, será incluído');
 		if (jsonData.centro_custo_identificador != null && jsonData.centro_custo_nome)  {
 			await CentroCusto.create({			
 				id: jsonData.centro_custo_identificador,
 				nome: jsonData.centro_custo_nome,
 			});
-			//console.log('Centro de Custo cadastrado com sucesso.');
 		}		
 	}
 }
