@@ -2,7 +2,7 @@ const obterDados = require('./webservice');
 const Pessoa = require('./model/pessoa');
 const Empresa = require('./model/empresa');
 const CentroCusto = require('./model/centro_custo');
-const sequelize = require('./db');
+//const sequelize = require('./db');
 
 let pessoaIgnorados = 0;
 let pessoaAdicionadas = 0;
@@ -90,7 +90,8 @@ async function updateOrInsertPessoa(jsonData) {
 
 async function processarDados() {
 	try {
-		await sequelize.sync({ force: false });
+		let newSequelize = require('./db');
+		await newSequelize.sync({ force: false });
 
 		//Realiza a comunicação com a API
 		const jsonData = await obterDados();
@@ -111,11 +112,8 @@ async function processarDados() {
 					\n---------------------------------------------');
 		
 		console.log('Dados salvos no banco de dados SQLite.');
-
-		// Fechando a conexão com o banco de dados
-		await sequelize.close();
 	} catch (error) {
-		console.error('Erro ao salvar os dados:', error);
+		console.error('Erro ao processar os dados:', error);
 	}
 };
 
