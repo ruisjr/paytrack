@@ -42,3 +42,9 @@ npm install sqlite3
 npm install sqlite
 npm install sequelize
 npm install node-cron
+
+## Execução
+
+Para iniciar o script, basta executar o seguinte comando:
+
+node app.js
