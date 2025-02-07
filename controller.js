@@ -2,7 +2,7 @@ const obterDados = require('./webservice');
 const Pessoa = require('./model/pessoa');
 const Empresa = require('./model/empresa');
 const CentroCusto = require('./model/centro_custo');
-//const sequelize = require('./db');
+const sequelize = require('./db');
 
 let pessoaIgnorados = 0;
 let pessoaAdicionadas = 0;
@@ -90,8 +90,11 @@ async function updateOrInsertPessoa(jsonData) {
 
 async function processarDados() {
 	try {
-		let newSequelize = require('./db');
-		await newSequelize.sync({ force: false });
+		pessoaIgnorados = 0;
+		pessoaAdicionadas = 0;
+		pessoaAtualizadas = 0;
+
+		await sequelize.sync({ force: false });
 
 		//Realiza a comunicação com a API
 		const jsonData = await obterDados();
