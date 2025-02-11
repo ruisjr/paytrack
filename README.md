@@ -8,7 +8,7 @@ A base de dados utilizada será SQLITE;
 
 Regras de negócio:
 
-- Será criada três tabelas: Pessoa, Empresa e Centro_Custo;
+- Será criado três tabelas: Pessoa, Empresa e Centro_Custo;
 - A tabela pessoa possui o campo cpf como chave primária;
 	- O campo empresa_cnpj possui chave estrangeira com referência ao campo cnpj da tabela empresa;
 	- O campo cc_id possui chave estrangeira com referência ao campo id da tabela centro_custo.
